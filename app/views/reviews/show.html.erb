@@ -1,0 +1,8 @@
+<div class="show-div">
+  <p><span class="show-content">Name: </span><%= @review.name %></p>
+  <p><span class="show-content">Comment: </span><%= @review.comment %></p>
+  <p><span class="show-content">stars: </span><%= ratings(@review.stars) %></p>
+  <%= link_to "Edit", edit_movie_review_path(@review), class: "button" %>
+  <%= link_to "Delete", movie_review_path(@review), class: "button", method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Back to Reviews', movie_reviews_path, class: "button" %>
+</div>

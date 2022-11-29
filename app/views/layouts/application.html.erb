@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flix</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <header>
+  <%= image_tag 'logo' %>
+  <% if current_user %>
+    <%= link_to ' SignOut', signout_path, class:"account-settings" %>
+    <%= link_to 'Account settings |', edit_user_path(current_user), class:"account-settings" %>
+    <p class="account-settings">Hello <%= current_user.name %>!<span> &nbsp;|&nbsp; </span></p>
+  <% else %>
+    <p style="float:right"><%= link_to 'SignUp', signup_path, class:"signup" %></p>
+    <p style="float:right"><%= link_to 'SignIn', signin_path, class:"signup" %></p>
+  <% end %>
+  </header>
+  <div class="content">
+    <%= render 'shared/flash' %>
+    <%= yield %>
+  </div>
+  <footer style="text-align:center">Copyrights to <a href="https://www.google.com" style="text-decoration:none">Flix.com</a> @ <%=Time.now.year%></footer>
+  </body>
+</html>

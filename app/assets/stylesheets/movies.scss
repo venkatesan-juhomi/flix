@@ -1,0 +1,28 @@
+// Place all the styles related to the movies controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.button {
+  padding: 5px 20px;
+  background-color: #237cbe;
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none !important;
+}
+.create-movie-button {
+  @extend .button;
+  border-radius: 0px;
+  display: inline-block;
+  margin-bottom: 30px;
+}
+.show-div{
+  border: 1px solid red;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+.show-content{
+  color: darkgreen;
+  font-weight: bold;
+}
+.avg-rating{
+  font-weight: bold;
+}

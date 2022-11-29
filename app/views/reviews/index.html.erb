@@ -1,0 +1,19 @@
+<h1 class="review-index-heading">Reviews for <%= link_to @movie.title, movie_path(@movie) %></h1>
+<% if @reviews.count == 0 %>
+  <%= link_to "Add New Review", new_movie_review_path, class: "create-movie-button" %>
+<% end %>
+<% if @reviews.blank?%>
+  <p style="text-align:center">No reviews available</p>
+<% end %>
+<% @reviews.each do |r| %>
+  <section class="movie">
+    <div class="summary">
+      <h2><%= r.user.username %></h2>
+      <h3><%= ratings(r.stars) %></h3>
+      <p><%= truncate(r.comment, length: 150, separator: ' ') %></p>
+    <%= link_to "Edit", edit_movie_review_path(@movie, r), class: "button" %>
+    <%= link_to "Delete", movie_review_path(@movie, r), class: "button", method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  </section>
+<% end %>
+<%= link_to 'Back to Movies List', movies_path %>

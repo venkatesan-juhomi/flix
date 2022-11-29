@@ -1,0 +1,30 @@
+<%= render 'shared/errors', object:review %>
+<%= form_with(model: [movie, review], local: true) do |f| %>
+  <%= f.label :stars %>
+  <div class="rating">
+    <!--<%= f.select :stars, Review::STARS, prompt: "Pick one" %>
+    <%= Review::STARS.map do |star| %>
+      <%= f.radio_button :stars, star %>
+      <%= f.label :stars, star %>
+    <% end %>-->
+    <%= f.radio_button :stars, '1' %>
+    <%= f.label :stars, '☆', value: '1' %>
+
+    <%= f.radio_button :stars, '2' %>
+    <%= f.label :stars, '☆☆', value: '2' %>
+
+    <%= f.radio_button :stars, '3' %>
+    <%= f.label :stars, '☆☆☆', value: '3' %>
+
+    <%= f.radio_button :stars, '4' %>
+    <%= f.label :stars, '☆☆☆☆', value: '4' %>
+
+    <%= f.radio_button :stars, '5' %>
+    <%= f.label :stars, '☆☆☆☆☆', value: '5' %>
+  </div>
+
+  <%= f.label :comment %>
+  <%= f.text_area :comment, rows: 5 %>
+
+  <%= f.submit %>
+<% end %>
