@@ -7,6 +7,8 @@ class User < ApplicationRecord
   validate :is_email_format_valid?
   has_many :reviews, dependent: :destroy
   has_many :movies, through: :reviews
+  has_many :likes, dependent: :destroy
+  has_many :liked_movies, dependent: :destroy, through: :likes, source: :movie
 
   def is_email_format_valid?
     return false if email.blank?

@@ -11,6 +11,19 @@
   <%= link_to "Edit", edit_movie_path(@movie), class: "button" %>
   <%= link_to "Delete", movie_path(@movie), class: "button", method: :delete, data: { confirm: 'Are you sure?' } %>
   <%= link_to 'Back to Movies List', movies_path, class: "button" %>
-  <br/>
+  <% if @movie.liked_by?(current_user) %>
+    <%= link_to "Unlike", movie_like_path(@movie), class: "button", method: :delete %>
+  <% else %>
+    <%= link_to "Like - #{@movie.like_count}", movie_likes_path(@movie), class: "button", method: :post %>
+  <% end %>
+  <br/><br/>
+  <% if @movie.users.present? %>
+    <p>People liked this movie💟</p>
+    <ul>
+      <% @movie.users.each do |user|%>
+        <li><%= user.name%></li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>
 

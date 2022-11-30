@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # resources :reviews, only: [:destroy]
   resources :movies do
     resources :reviews
+    resources :likes
   end
   resources :users
   get '/signup', to: "users#new"

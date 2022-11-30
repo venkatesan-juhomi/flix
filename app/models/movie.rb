@@ -11,6 +11,8 @@ class Movie < ApplicationRecord
   }
   validates :rating, inclusion: { in: RATINGS, message: "%{value} is not  valid" }
   has_many :reviews, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :users, through: :likes, dependent: :destroy
   # validate :custom_validation
 
   # def custom_validation
@@ -18,6 +20,18 @@ class Movie < ApplicationRecord
   #     errors.add("Stars should not be 3.")
   #   end
   # end
+
+  def liked_by?(user)
+    likes.exists?(user: user)
+  end
+
+  def like_count
+    likes.count
+  end
+
+  def reviewd?(user)
+    reviews.exists?(user: user)
+  end
 
   def flop?
     avg = reviews.average(:stars)

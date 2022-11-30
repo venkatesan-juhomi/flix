@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_25_053854) do
+ActiveRecord::Schema.define(version: 2022_11_29_172815) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 2022_11_25_053854) do
     t.datetime "created_at", precision: 6
     t.datetime "updated_at", precision: 6
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "movie_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_likes_on_movie_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "movies", force: :cascade do |t|
@@ -62,6 +71,8 @@ ActiveRecord::Schema.define(version: 2022_11_25_053854) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "likes", "movies"
+  add_foreign_key "likes", "users"
   add_foreign_key "reviews", "movies"
   add_foreign_key "reviews", "users"
 end

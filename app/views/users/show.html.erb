@@ -3,9 +3,17 @@
   <p><span class="show-content">User Name: </span><%= @user.username %></p>
   <p><span class="show-content">Email: </span><%= @user.email %></p>
   <% if @user.movies.present? %>
-    <p>Reviewed Movies</p>
+    <p>Reviewed Movies✍🏻</p>
     <ul>
       <% @user.movies.each do |movie|%>
+        <li><%= movie.title%></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <% if @user.liked_movies.present? %>
+    <p>Liked Movies💟</p>
+    <ul>
+      <% @user.liked_movies.each do |movie|%>
         <li><%= movie.title%></li>
       <% end %>
     </ul>
