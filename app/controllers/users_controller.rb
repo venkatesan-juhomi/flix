@@ -2,13 +2,6 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_signin, except: [:new, :create]
   before_action :require_current_user, only: [:edit, :update, :destroy]
-  
-  def require_signin
-    if !current_user
-      session[:intended_url] = request.url
-      redirect_to signin_path
-    end
-  end
 
   def require_current_user
     @user = User.find(params[:id])

@@ -12,7 +12,10 @@ class Movie < ApplicationRecord
   validates :rating, inclusion: { in: RATINGS, message: "%{value} is not  valid" }
   has_many :reviews, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :users, through: :likes, dependent: :destroy
+  has_many :users, through: :likes
+  has_many :characterizations, dependent: :destroy
+  has_many :genres, through: :characterizations
+
   # validate :custom_validation
 
   # def custom_validation

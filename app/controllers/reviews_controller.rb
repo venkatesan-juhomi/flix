@@ -3,13 +3,6 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: [:edit, :update, :destroy]
   before_action :require_signin
 
-  def require_signin
-    if !current_user
-      session[:intended_url] = request.url
-      redirect_to signin_path, notice:"You are not signed in!!! Please signIn to continue"
-    end
-  end
-
   def index
     @reviews = @movie.reviews
   end

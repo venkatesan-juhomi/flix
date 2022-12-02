@@ -1,13 +1,6 @@
 class LikesController < ApplicationController
   before_action :require_signin
 
-  def require_signin
-    if !current_user
-      session[:intended_url] = request.url
-      redirect_to signin_path, notice:"You are not signed in!!! Please signIn to continue"
-    end
-  end
-
   def create
     @movie = Movie.find(params[:movie_id])
     @movie.likes.new(user: current_user)
