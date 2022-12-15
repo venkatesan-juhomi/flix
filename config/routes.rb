@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: "movies#index"
   # resources :reviews, only: [:destroy]
+  get '/movies/filter_by', to: 'movies#index', as: :filtered_movies
   resources :movies do
     resources :reviews
     resources :likes

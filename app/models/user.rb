@@ -10,6 +10,10 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_movies, dependent: :destroy, through: :likes, source: :movie
 
+  scope :by_name, lambda {order("name")}
+  scope :not_admin, lambda {by_name.where("admin == ?", false)}
+  scope :admin, lambda {where("admin == ?", true)}
+
   def is_email_format_valid?
     return false if email.blank?
     result = (email =~ VALID_EMAIL_REGEX)

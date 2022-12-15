@@ -16,6 +16,14 @@ module MoviesHelper
     end
   end
 
+  def image_attached?(movie)
+    if movie.movie_title_image.attached?
+      movie.movie_title_image
+    else
+      'placeholder'
+    end
+  end
+
   # def cult_movie(movie)
   #   avg = movie.average_stars
   #   reviews_count = movie.reviews_count

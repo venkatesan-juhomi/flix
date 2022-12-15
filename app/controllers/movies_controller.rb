@@ -3,10 +3,17 @@ class MoviesController < ApplicationController
   before_action :require_admin, only: [:new, :show, :create, :edit, :update, :destroy]
 
   def index
-    @movies = Movie.released
-    # @movies = Movie.all_hit_movies
-    # @movies = Movie.all_flop_movies
-    # @movies = Movie.recently_added
+    type = params["type"]
+    case type
+    when "released"
+      @movies = Movie.released
+    when "upcoming"
+      @movies = Movie.upcoming
+    when "recent"
+      @movies = Movie.recent
+    else
+      @movies = Movie.all
+    end
   end
 
   def new
@@ -48,11 +55,11 @@ class MoviesController < ApplicationController
   private
 
   def movie_params
-    movie_params = params.require(:movie).permit(:title, :rating, :total_gross, :description, :released_on, :director, :duration, :image_file_name, genre_ids: [])
+    movie_params = params.require(:movie).permit(:title, :rating, :total_gross, :description, :released_on, :director, :duration, :movie_title_image, genre_ids: [])
   end
 
   def set_movie
-    @movie = Movie.find(params[:id])
+    @movie = Movie.find_by(slug: params[:id])
   end
 
 end
