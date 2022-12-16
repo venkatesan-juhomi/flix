@@ -20,7 +20,7 @@ module MoviesHelper
     if movie.movie_title_image.attached?
       movie.movie_title_image
     else
-      'placeholder'
+      'placeholder.png'
     end
   end
 
