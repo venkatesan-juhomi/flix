@@ -9,6 +9,13 @@
   <%= f.label :email %>
   <%= f.email_field :email %>
 
+  <%= f.label :admin %>
+  <%= f.radio_button :admin, true %>
+  <%= f.label :admin, 'Yes', value: true %>
+
+  <%= f.radio_button :admin, false %>
+  <%= f.label :admin, 'No', value: false %>
+
   <%= f.label :password %>
   <%= f.password_field :password %>
 
